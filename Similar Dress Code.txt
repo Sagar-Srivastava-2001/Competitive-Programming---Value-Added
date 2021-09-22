@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void solve() {
+    string s;
+    cin>>s;
+    
+    int one = 0, zero = 0;
+    
+    for(auto x:s){
+        if(x=='1'){
+            one++;
+        }
+        else{
+            zero++;
+        }
+    }
+    cout<<min(one,zero)<<endl;
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--){
+        solve();
+    }
+}
