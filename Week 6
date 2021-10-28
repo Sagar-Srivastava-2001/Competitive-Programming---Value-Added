@@ -1,0 +1,81 @@
+// PROBLEM 1 : HARTAL
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+   int n;
+   cin>>n;
+    
+   int p;
+   cin>>p;
+    
+    int arr[n+1] = {0};
+    
+    for(int i=0;i<p;i++){
+        int h;
+        cin>>h;
+        
+        for(int j=1;j<=n;j++){
+            if((j%7==6) || (j%7==0)){
+                continue;
+            }
+            else if(j%h==0){
+                arr[j] = 1;
+            }
+        }
+    }
+    int ans = 0;
+    for(int i=1;i<=n;i++){
+        if(arr[i] == 1){
+            ans++;
+        }
+    }
+    cout<<ans<<endl;
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--){
+        solve();
+    }
+}
+
+
+PROBLEM 2 : Gangster Dawood Ibrahim
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--){
+        int n;
+        cin>>n;
+        
+        vector<int> v;
+        
+        for(int i=0;i<n;i++){
+            int x;
+            cin>>x;
+            
+            v.push_back(x);
+        }
+        
+        sort(v.begin(),v.end());
+        
+        if(n%2==0){
+            cout<<v[(n/2)-1]<<endl;
+        }
+        else{
+            cout<<v[n/2]<<endl;
+        }
+    }
+}
