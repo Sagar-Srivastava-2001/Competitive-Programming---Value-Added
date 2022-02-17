@@ -1,0 +1,148 @@
+Question 1 : Sum of Matrix Elements
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+    int n;
+    cin>>n;
+    
+    vector<vector<int>> v;
+    
+    for(int i=0;i<n;i++){
+        vector<int> temp;
+        for(int j=0;j<n;j++){
+            int x;
+            cin>>x;
+            temp.push_back(x);
+        }
+        v.push_back(temp);
+    }
+    
+    long long int ans = 0;
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(i==0 || i==n-1 || j==0 || j==n-1){
+                ans += v[i][j];
+            }
+        }
+    }
+    
+    int ld = 0, rd = 0;
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(i==j){
+                ld += v[i][j];
+            }
+        }
+    }
+    int i=0, j=n-1;
+    while(i<n and j>=0){
+        rd += v[i][j];
+        i++;
+        j--;
+    }
+    if(n%2!=0)
+        cout<<ans+(ld-v[0][0]-v[n/2][n/2]-v[n-1][n-1]) + (rd-v[0][n-1]-v[n-1][0])<<endl;
+    else{
+        cout<<ans+(ld-v[0][0]-v[n-1][n-1]) + (rd-v[0][n-1]-v[n-1][0])<<endl;
+    }
+    // cout<<ans<<" "<<ld<<" "<<rd<<endl;
+}
+    
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--){
+        solve();
+    }
+}
+
+Question 2 : Stand in Queue
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        
+        vector<int> v;
+        
+        for(int i=0;i<n;i++){
+            int x;
+            cin>>x;
+            v.push_back(x);
+        }
+        
+        bool ans = true;
+        
+        int diff = abs(v[1] - v[0]);
+        
+        for(int i=2;i<n;i++){
+            if(abs(v[i]-v[i-1]) == (diff + 1) || abs(v[i]-v[i-1]) == (diff - 1)){
+                diff = abs(v[i]-v[i-1]);
+            }
+            else{
+                ans = false;
+                break;
+            }
+        }
+        
+        if(ans == true){
+            cout<<"Correct Formation"<<endl;
+        }
+        else{
+            cout<<"Incorrect Formation"<<endl;
+        }
+    }
+}
+
+
+Question 3 : Multiplication of a number with its complement with same number of bits
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--){
+        int n;
+        cin>>n;
+        
+        int cp = 0;
+        int temp = n;
+        int one = 0, two = 0;
+        for(int i=0;i<32;i++){
+            int mask = (1<<i);
+            if((temp & mask) != 0){
+                one = i;
+            }
+        }
+        
+        // cout<<one<<endl;
+        
+        for(int i=0;i<one;i++){
+            long long mask = (1ll<<i);
+            if((n&mask) == 0){
+                cp += (1ll<<i);
+            }
+        }
+        
+        cout<<n*cp<<endl;
+    }
+}
